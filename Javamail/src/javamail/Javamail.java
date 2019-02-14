@@ -5,6 +5,7 @@
  */
 package javamail;
 
+import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -19,14 +20,17 @@ public class Javamail {
      */
     public static void main(String[] args) {
             // mail server connection parameters
-       String host = "pop.mail.yahoo.com";
-       String user = "USERNAME";
-       String password = "PASSWORD";
+       String host = "pop.gmail.com";
+       String user = "littleheadfilms@gmail.com";
+       String password = "EmailLH12";
 
+       
+       try
+       {
        // connect to my pop3 inbox
        Properties properties = System.getProperties();
-       Session session = Session.getDefaultInstance(properties);
-       Store store = session.getStore("pop3");
+       Session session = Session.getDefaultInstance(properties, null);
+       Store store = session.getStore("pop3s");
        store.connect(host, user, password);
        Folder inbox = store.getFolder("Inbox");
        inbox.open(Folder.READ_ONLY);
@@ -54,6 +58,10 @@ public class Javamail {
        inbox.close(true);
        store.close();
      }
-    }
+     catch(Exception e)
+     {
+         e.printStackTrace();
+     }
     
+    }
 }
