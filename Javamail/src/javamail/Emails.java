@@ -39,8 +39,8 @@ public class Emails {
              for(;;)
              {   //conecta com a inbox pop3
                   Properties properties = System.getProperties();
-                  Session session = Session.getDefaultInstance(properties, null);
-                  store = session.getStore("pop3s");
+                  Session sessao = Session.getDefaultInstance(properties, null);
+                  store = sessao.getStore("pop3s");
                   store.connect(host, user, senha);
                   inbox = store.getFolder("Inbox");
                   inbox.open(Folder.READ_WRITE);
@@ -48,7 +48,8 @@ public class Emails {
                   //vetor das mensagens do inbox
                   Message[] mensagens = inbox.getMessages();
 
-                  if (mensagens.length == 0) System.out.println("Nenhuma mensagem encontrada.");
+                  if (mensagens.length == 0) System.out.println("Nenhuma "
+                                                      + "mensagem encontrada.");
 
 
                   for (int i = 0; i < mensagens.length; i++) 
@@ -59,8 +60,10 @@ public class Emails {
 
                       System.out.println("Mensagem " + (i + 1));
                       System.out.println("De : " + mensagens[i].getFrom()[0]);
-                      System.out.println("Assunto : " + mensagens[i].getSubject());
-                      System.out.println("Data de envio : " + mensagens[i].getSentDate());
+                      System.out.println("Assunto : " + 
+                                                    mensagens[i].getSubject());
+                      System.out.println("Data de envio : " + 
+                                                    mensagens[i].getSentDate());
                       System.out.println();
                       System.out.println("Quer deletar esta mensagem?[S/N]");
                       resposta = leitor.nextLine();
@@ -83,8 +86,6 @@ public class Emails {
           {
               e.printStackTrace();
           }
-
-    
       }
 
     @Override
